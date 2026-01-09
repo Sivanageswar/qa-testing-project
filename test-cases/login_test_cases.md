@@ -5,3 +5,4 @@
 3. Verify login with empty fields
 4. Verify login with locked account
 5. Verify sign up with password mismatch
+6. Verify user logged into dashboardafter login
