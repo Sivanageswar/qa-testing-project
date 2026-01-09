@@ -1,0 +1,17 @@
+1. Incorrect validation message displayed for wrong OTP
+
+2. Account is getting created after OTP verification without entering mandatory fields (Name & Email)
+
+3. Search not working with key or keyword for any product keyword; shows "No listings found"
+
+4. Selected category not highlighting after search
+
+5. Location-based search returns results from incorrect locations
+
+6. User registration still allowed even when "New User Registrations" is set to Inactive
+
+7. Edit Profile UI issues with Cancel button and profile image
+
+8. Unable to send the a message under "contact us"
+
+9. Jobs are displayed when selecting price range under 1K
