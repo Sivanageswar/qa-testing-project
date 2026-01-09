@@ -1,0 +1,67 @@
+package testcases;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class LoginTest {
+
+    WebDriver driver;
+
+    @BeforeClass
+    public void setUp() {
+        // Set ChromeDriver path (update path as per your system)
+        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://example.com/login");  // Replace with your application URL
+    }
+
+    @Test
+    public void validLoginTest() {
+        // Find username and password fields
+        WebElement username = driver.findElement(By.id("username"));
+        WebElement password = driver.findElement(By.id("password"));
+        WebElement loginButton = driver.findElement(By.id("loginBtn"));
+
+        // Enter valid credentials
+        username.sendKeys("testuser");
+        password.sendKeys("Test@123");
+        loginButton.click();
+
+        // Verify login success
+        WebElement dashboard = driver.findElement(By.id("dashboard"));
+        Assert.assertTrue(dashboard.isDisplayed(), "Login failed - Dashboard not visible");
+    }
+
+    @Test
+    public void invalidLoginTest() {
+        // Go back to login page
+        driver.get("https://example.com/login");
+
+        // Enter invalid credentials
+        WebElement username = driver.findElement(By.id("username"));
+        WebElement password = driver.findElement(By.id("password"));
+        WebElement loginButton = driver.findElement(By.id("loginBtn"));
+
+        username.sendKeys("wronguser");
+        password.sendKeys("wrongpass");
+        loginButton.click();
+
+        // Verify error message
+        WebElement errorMsg = driver.findElement(By.id("errorMsg"));
+        Assert.assertTrue(errorMsg.isDisplayed(), "Error message not displayed for invalid login");
+    }
+
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
